@@ -1,4 +1,4 @@
-/**
+/*
 * @license Apache-2.0
 *
 * Copyright (c) 2025 The Stdlib Authors.
@@ -16,19 +16,11 @@
 * limitations under the License.
 */
 
-'use strict';
+// TypeScript Version: 4.1
 
-// MODULES //
+/// <reference types="https://cdn.jsdelivr.net/gh/stdlib-js/types@main/index.d.ts"/>
 
-var ndarraylike2scalar = require( '@stdlib/ndarray-base-ndarraylike2scalar' );
-var numelDimension = require( '@stdlib/ndarray-base-numel-dimension' );
-var getStride = require( '@stdlib/ndarray-base-stride' );
-var getOffset = require( '@stdlib/ndarray-base-offset' );
-var getData = require( '@stdlib/ndarray-base-data-buffer' );
-var strided = require( '@stdlib/blas-ext-base-dsortins' ).ndarray;
-
-
-// MAIN //
+import { typedndarray, float64ndarray } from '@stdlib/types/ndarray';
 
 /**
 * Sorts a one-dimensional double-precision floating-point ndarray using insertion sort.
@@ -40,8 +32,8 @@ var strided = require( '@stdlib/blas-ext-base-dsortins' ).ndarray;
 *     -   a one-dimensional input ndarray.
 *     -   a zero-dimensional ndarray specifying the sort order.
 *
-* @param {ArrayLikeObject<Object>} arrays - array-like object containing ndarrays
-* @returns {ndarray} input ndarray
+* @param arrays - array-like object containing ndarrays
+* @returns input ndarray
 *
 * @example
 * var Float64Vector = require( '@stdlib/ndarray-vector-float64' );
@@ -56,19 +48,9 @@ var strided = require( '@stdlib/blas-ext-base-dsortins' ).ndarray;
 * var out = dsortins( [ x, ord ] );
 * // returns <ndarray>[ -4.0, -2.0, 1.0, 3.0 ]
 */
-function dsortins( arrays ) {
-	var ord;
-	var x;
-
-	x = arrays[ 0 ];
-	ord = ndarraylike2scalar( arrays[ 1 ] );
-
-	strided( numelDimension( x, 0 ), ord, getData( x ), getStride( x, 0 ), getOffset( x ) ); // eslint-disable-line max-len
-
-	return x;
-}
+declare function dsortins( arrays: [ float64ndarray, typedndarray<number> ] ): float64ndarray;
 
 
 // EXPORTS //
 
-module.exports = dsortins;
+export = dsortins;
